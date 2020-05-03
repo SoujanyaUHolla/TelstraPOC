@@ -10,7 +10,11 @@ class InfoTableViewController: UIViewController, UITableViewDataSource, UITableV
     let infoTableView = UITableView()
     private var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(frame: .zero)
-        activityIndicator.style = .medium
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = .medium
+        } else {
+            activityIndicator.style = .gray
+        }
         return activityIndicator
     }()
 
@@ -97,8 +101,8 @@ class InfoTableViewController: UIViewController, UITableViewDataSource, UITableV
             else if let error = Error{
                 print(error.localizedDescription)
                 let alertController = UIAlertController(title: "Error", message:
-               "There seems to be an issue with your network connectivity. Please try again", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+               "Ops..Network Connection is lost!\nPlease try again", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .default))
             
                 self?.present(alertController, animated: true, completion: nil)
                 

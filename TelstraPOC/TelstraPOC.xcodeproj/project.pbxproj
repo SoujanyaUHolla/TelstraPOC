@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6017AE0B245E081F00A72AF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE0A245E081F00A72AF5 /* AppDelegate.swift */; };
-		6017AE12245E081F00A72AF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6017AE10245E081F00A72AF5 /* Main.storyboard */; };
 		6017AE14245E082100A72AF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6017AE13245E082100A72AF5 /* Assets.xcassets */; };
 		6017AE17245E082100A72AF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6017AE15245E082100A72AF5 /* LaunchScreen.storyboard */; };
 		6017AE22245E082100A72AF5 /* TelstraPOCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE21245E082100A72AF5 /* TelstraPOCTests.swift */; };
@@ -18,6 +17,9 @@
 		6017AE42245E0A3200A72AF5 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE41245E0A3200A72AF5 /* InfoTableViewCell.swift */; };
 		6017AE45245E8ACC00A72AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE44245E8ACC00A72AF5 /* Constants.swift */; };
 		6017AE47245E8C1700A72AF5 /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE46245E8C1700A72AF5 /* InfoModel.swift */; };
+		6017AE49245E96B600A72AF5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE48245E96B600A72AF5 /* Networking.swift */; };
+		6017AE4B245E9A4D00A72AF5 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6017AE4A245E9A4D00A72AF5 /* placeholder.png */; };
+		6017AE4F245ED73200A72AF5 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6017AE4E245ED73200A72AF5 /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,6 @@
 /* Begin PBXFileReference section */
 		6017AE07245E081F00A72AF5 /* TelstraPOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelstraPOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6017AE0A245E081F00A72AF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6017AE11245E081F00A72AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6017AE13245E082100A72AF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6017AE16245E082100A72AF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6017AE18245E082100A72AF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +56,9 @@
 		6017AE41245E0A3200A72AF5 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		6017AE44245E8ACC00A72AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6017AE46245E8C1700A72AF5 /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
+		6017AE48245E96B600A72AF5 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Networking.swift; path = TelstraPOC/Networking.swift; sourceTree = SOURCE_ROOT; };
+		6017AE4A245E9A4D00A72AF5 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		6017AE4E245ED73200A72AF5 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +114,6 @@
 				6017AE3B245E096500A72AF5 /* ViewModel */,
 				6017AE3A245E095E00A72AF5 /* View */,
 				6017AE0A245E081F00A72AF5 /* AppDelegate.swift */,
-				6017AE10245E081F00A72AF5 /* Main.storyboard */,
 				6017AE13245E082100A72AF5 /* Assets.xcassets */,
 				6017AE15245E082100A72AF5 /* LaunchScreen.storyboard */,
 				6017AE18245E082100A72AF5 /* Info.plist */,
@@ -148,6 +151,7 @@
 		6017AE3B245E096500A72AF5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6017AE48245E96B600A72AF5 /* Networking.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -164,7 +168,9 @@
 		6017AE43245E8A7900A72AF5 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				6017AE4A245E9A4D00A72AF5 /* placeholder.png */,
 				6017AE44245E8ACC00A72AF5 /* Constants.swift */,
+				6017AE4E245ED73200A72AF5 /* UIImageViewExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -274,8 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6017AE17245E082100A72AF5 /* LaunchScreen.storyboard in Resources */,
+				6017AE4B245E9A4D00A72AF5 /* placeholder.png in Resources */,
 				6017AE14245E082100A72AF5 /* Assets.xcassets in Resources */,
-				6017AE12245E081F00A72AF5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +312,8 @@
 				6017AE42245E0A3200A72AF5 /* InfoTableViewCell.swift in Sources */,
 				6017AE3E245E099A00A72AF5 /* MainInfo.swift in Sources */,
 				6017AE47245E8C1700A72AF5 /* InfoModel.swift in Sources */,
+				6017AE4F245ED73200A72AF5 /* UIImageViewExtension.swift in Sources */,
+				6017AE49245E96B600A72AF5 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,14 +349,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6017AE10245E081F00A72AF5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6017AE11245E081F00A72AF5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6017AE15245E082100A72AF5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

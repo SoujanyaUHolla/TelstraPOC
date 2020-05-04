@@ -4,12 +4,12 @@ import UIKit
 
 
 class InfoTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-   
+    
     var info:[InfoModel]?
     let infoTableView = UITableView()
     private var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(frame: .zero)
+        let activityIndicator =  UIActivityIndicatorView()
+        //  activityIndicator.center =
         if #available(iOS 13.0, *) {
             activityIndicator.style = .medium
         } else {
@@ -17,10 +17,12 @@ class InfoTableViewController: UIViewController, UITableViewDataSource, UITableV
         }
         return activityIndicator
     }()
-
+    
+    //MARK: - View Lifecycle methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .gray
         tableSetUp()
         
     }
@@ -31,39 +33,39 @@ class InfoTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       let refresh = UIRefreshControl()
+        let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(pullToRefreshContents), for: .valueChanged)
         infoTableView.refreshControl = refresh
     }
     
     @objc func pullToRefreshContents(refresh: UIRefreshControl) {
-           getInfoFromURL()
-           refresh.endRefreshing()
-       }
+        getInfoFromURL()
+        refresh.endRefreshing()
+    }
     
+    //MARK: - TableView set up proccess
     
     func tableSetUp(){
-            let leftBarButton = UIBarButtonItem(customView: activityIndicator)
-                   navigationItem.setLeftBarButton(leftBarButton, animated: true)
+        let leftBarButton = UIBarButtonItem(customView: activityIndicator)
+        navigationItem.setLeftBarButton(leftBarButton, animated: true)
+        view.addSubview(infoTableView)
+        infoTableView.translatesAutoresizingMaskIntoConstraints = false
+        infoTableView.tableFooterView = UIView()
         
-            view.addSubview(infoTableView)
-            infoTableView.translatesAutoresizingMaskIntoConstraints = false
-
-            infoTableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
-            infoTableView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
-            infoTableView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
-            infoTableView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-
+        infoTableView.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor).isActive = true
+        infoTableView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        infoTableView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        infoTableView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-            infoTableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
-            infoTableView.rowHeight = UITableView.automaticDimension
-            infoTableView.estimatedRowHeight = 400
-    
-            infoTableView.dataSource = self
-            infoTableView.delegate = self
-            
+        
+        infoTableView.register(InfoTableViewCell.self, forCellReuseIdentifier: "infoCell")
+        infoTableView.rowHeight = UITableView.automaticDimension
+        infoTableView.estimatedRowHeight = 400
+        
+        infoTableView.dataSource = self
+        infoTableView.delegate = self
+        
     }
-
     
     
     //MARK: - TableView Deleagte Methods
@@ -79,38 +81,41 @@ class InfoTableViewController: UIViewController, UITableViewDataSource, UITableV
         {
             cell.loadCellContents(news:currentLastItem)
         }
-            else{
+        else{
             return cell
         }
+        cell.selectionStyle = .none
         return cell
     }
     
- 
+    //MARK: - Call to fetch contents for the tableview
+    
+    
     func getInfoFromURL(){
         activityIndicator.startAnimating()
         Networking.sharedInstance.getInfo{[weak self](MainInfo,Error) in
             DispatchQueue.main.async {
-            if let infoResults = MainInfo{
-                self?.info = (infoResults.rows).filter{$0.title != nil}
-                       self?.navigationItem.title = infoResults.title
-                       self?.activityIndicator.stopAnimating()
-                       self?.infoTableView.reloadData()
-            
-                
-            }
-            else if let error = Error{
-                print(error.localizedDescription)
-                let alertController = UIAlertController(title: "Error", message:
-               "Ops..Network Connection is lost!\nPlease try again", preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            
-                self?.present(alertController, animated: true, completion: nil)
-                
-            }
+                if let infoResults = MainInfo{
+                    self?.info = (infoResults.rows).filter{$0.title != nil}
+                    self?.navigationItem.title = infoResults.title
+                    self?.activityIndicator.stopAnimating()
+                    self?.infoTableView.reloadData()
+                    
+                    
+                }
+                else if let error = Error{
+                    print(error.localizedDescription)
+                    let alertController = UIAlertController(title: "Error", message:
+                        "Ops..Network Connection is lost!\nPlease try again", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: .default))
+                    
+                    self?.present(alertController, animated: true, completion: nil)
+                    
+                }
                 
             }
         }
         
     }
-
+    
 }

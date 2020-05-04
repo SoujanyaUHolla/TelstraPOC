@@ -1,6 +1,8 @@
 # TelstraPOC
 This is a POC app for iOS which renders the URL response from a Rest API on a tableview. 
 
+Archituecture implemented is MVVM
+
 JSON content received from the API is decoded using swift's JSONDecoder class.
 
 URL Session class is used for the API call
